@@ -1,0 +1,8 @@
+{
+    "name": "vagrant/html",
+    "description": "creer un service similaire a wetransfer",
+    "license": "MIT",
+    "require": {
+        "twig/twig": "^2.0"
+    }
+}
