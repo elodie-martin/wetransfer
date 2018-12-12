@@ -16,11 +16,24 @@ $id = (count($request) < 3)? '': $request[3];
 
 //Routeur pour acces aux contrôleurs
 switch ($controler) {
-    case 'home': // Affichage de la fiche d'un film en particulier
+    case 'home':
        require_once 'controler/home_controler.php';
     break;
+
+    case 'login':
+       require_once 'controler/login_controler.php';
+    break;
+
+    case 'download':
+       require_once 'controler/download_controler.php';
+    break;
+
+    case 'info':
+       require_once 'controler/info_controler.php';
+    break;
+
  
     default: //Affichage de la page 404
-       require_once 'controler/home_controler.php';
+       require_once 'controler/404_controler.php';
     break;
  }
