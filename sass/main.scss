@@ -1,0 +1,29 @@
+// CHARGEMENT DE BOOTSTRAP
+
+
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// Optional
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/code";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/utilities";
+
+
+.container {
+    width: 150vh;
+    height: 65vh;
+    box-shadow: 10px 9px 20px rgba(0, 0, 0, 0.267);
+    background-color: aqua;
+
+}
+
+
+.size-box {
+    height: 100vh;
+}
