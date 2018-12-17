@@ -20,19 +20,11 @@ switch ($controler) {
        require_once 'controler/home_controler.php';
     break;
 
-    case 'login':
-       require_once 'controler/login_controler.php';
-    break;
-
-    case 'download':
-       require_once 'controler/download_controler.php';
-    break;
-
-    case 'info':
-       require_once 'controler/info_controler.php';
+    case 'dashboard':
+       require_once 'controler/dashboard_controler.php';
     break;
  
     default: //Affichage de la page 404
-       require_once 'controler/404_controler.php';
+      echo $twig->render('404.twig', array());
     break;
  }
