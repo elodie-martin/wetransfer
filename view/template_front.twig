@@ -10,25 +10,32 @@
     <title>EZ-Transfer</title>
 </head>
 
-<body>
-    <header>
-        <div class="container-fluid d-flex justify-content-between mt-4 fixed-top">
-            <div class="ml-4">LOGO</div>
-            <div class="mr-4">{% block connexion %}</div>
-            {% endblock %}
+<body class="container-fluid d-flex flex-column justify-content-between">
+    <header class="row d-flex justify-content-start align-items-center">
+        <div class="ml-4">
+            <a href="home"><img class="logo" src="media/ez_logo.svg" alt="logo du site EZ Transfer"></a>
         </div>
     </header>
 
-    <section class="d-flex align-items-center size-box">
-        <div class="container d-flex justify-content-between ">
-            <div>{% block info %}
+    <section class="central-card container">
+        <div class="row h-100">
+            <div class="info col-5 d-flex flex-column justify-content-center align-items-center">
+                {% block info %}
                 {% endblock %}
             </div>
-            <div>{% block formulaire %}
+            <div class="formulaire col-7 d-flex flex-column justify-content-center align-items-center">
+                {% block formulaire %}
                 {% endblock %}
             </div>
         </div>
     </section>
+
+    <footer class="row d-flex justify-content-end align-items-center">
+        <p class="toogle-footer p-3 mr-4">? | A propos de EZ Transfer</p>
+
+    </footer>
+
+    <script src="js/app.js"></script>
 </body>
 
 </html>

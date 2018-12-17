@@ -11,8 +11,8 @@ $request = explode("/", trim($url, '/'));
 
 //Test et récupération du contrôleur et de l'action
 $controler = (count($request) === 0)? 'home': $request[0];
-$action = (count($request) < 2)? '': $request[2];
-$id = (count($request) < 3)? '': $request[3];
+$action = (count($request) < 2)? '': $request[1];
+$id = (count($request) < 3)? '': $request[2];
 
 //Routeur pour acces aux contrôleurs
 switch ($controler) {
