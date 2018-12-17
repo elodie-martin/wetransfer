@@ -3,7 +3,7 @@
     require_once 'set_PDO.php';
 
 // Requète SQL à envoyer
-    $sql = "INSERT INTO fichier (nom, extension, message, url, poids, date_up) VALUES ('".$_FILES['icone']['name']."', 'extension', 'message', 'url', 'poids', 'date_up')";
+    $sql = "INSERT INTO fichier (nom, extension, message, url, poids, date_up) VALUES ('".$_FILES['icone']['name']."', '".$_FILES['icone']['type']."', 'message', '".$_FILES['icone']['tmp_name']."', '".$_FILES['icone']['size']."', 'date_up')";
     
     
     $response = $bdd->prepare( $sql ); // Préparation de la requète
