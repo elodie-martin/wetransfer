@@ -11,7 +11,7 @@ btnSubmit.addEventListener("click", function (e) {
         e.preventDefault();
         window.alert("Veuillez ajouter une image !");
     } else if (nom.value === "" || emailExpediteur.value === "" || emailDestinataire.value === "" || message.value === "") {
-        e.preventDefault(); 
+        e.preventDefault();
         window.alert("Veuillez compléter tous les champs !");
     } else if (!expressionReguliere.test(emailExpediteur.value) || !expressionReguliere.test(emailDestinataire.value)) {
         e.preventDefault();
