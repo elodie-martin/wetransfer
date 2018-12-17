@@ -31,7 +31,6 @@ switch ($controler) {
     case 'info':
        require_once 'controler/info_controler.php';
     break;
-
  
     default: //Affichage de la page 404
        require_once 'controler/404_controler.php';

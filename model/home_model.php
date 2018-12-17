@@ -1,4 +1,5 @@
 <?php
+
   // Chargement de l'environnement PDO
     require_once 'set_PDO.php';
 
