@@ -15,6 +15,7 @@
 
 {# affichage du formulaire et de l'upload #}
 {% block formulaire %}
+
     <form method="post" action="reception.php" enctype="multipart/form-data">
         <label for="icone">Icône du fichier (JPG, PNG ou GIF | max. 15 Ko) :</label><br />
         <input type="file" class="form-control-file" name="icone" id="icone" /><br />
@@ -23,7 +24,6 @@
         <input type="email" class="form-control" name="emailExpediteur" id="emailExpediteur" placeholder="Votre adresse email"><br />
         <input type="email" class="form-control" name="emailDestinataire" id="emailDestinataire" placeholder="Email du destinaire"><br />
         <textarea class="form-control" name="message" placeholder="Message" id="message"></textarea><br />
-
         <button type="submit" name="submit" id="btnSubmit">Transférer</button>
     </form>
 {% endblock %}
