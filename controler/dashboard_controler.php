@@ -27,6 +27,16 @@ switch ($action) {
     $identifiant = $_POST['identifiant'];
     $password = $_POST['password'];
 
-    //
+    //Récupération des infos de la bdd
+    require_once 'model/login_model.php';
+    compareLogs();
+
+    if(){
+
+    }else{
+        
+        echo $twig->render('login.twig', array());
+    
+    }
 
  }
