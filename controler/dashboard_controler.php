@@ -13,19 +13,20 @@ switch ($action) {
         displayDashboard();
     break;
 
-    case 'login':
-        checkAccess();
-    break;
-
     default: // conportement par défaut quand il n'y a pas de cas reconnu par le switch
         echo $twig->render('login.twig', array());
     break;
  }
 
- function checkAccess(){
-
- }
-
  function displayDashboard(){
+    
+    global $twig;
+    global $bdd;
+
+    //Récupération des informations saisies
+    $identifiant = $_POST['identifiant'];
+    $password = $_POST['password'];
+
+    //
 
  }

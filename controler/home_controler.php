@@ -65,9 +65,9 @@ function uploadFile(){
     }
 
     //Créer un identifiant difficile à deviner
-    $id = time(). md5(uniqid(rand(), true));
+    $number = time(). md5(uniqid(rand(), true));
 
-    $nom = "fichier/".$id.".".$extension_upload;
+    $nom = "fichier/".$number.".".$extension_upload;
     $resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
     
     //Message de réussite
