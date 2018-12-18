@@ -1,25 +1,22 @@
 {# indique la dépendance au template #}
 {% extends "template_front.twig" %}
 
-{# block login sur la section upload #}
-{% block connexion%}
-
-
-
-{% endblock %}
-
-
 {# block info sur la section upload #}
 {% block info %}
-
-
-
-
+    <h2>Bienvenue sur</h2>
+    <p><img class="logo" src="media/ez_transfer.svg" alt="logo complet du site EZ transfer"></p>
+    <hr>
+    <p>
+        Transférez facilement vos photos et vos fichiers volumineux à vos amis, vos collègues ou votre famille.
+        <br>
+        Profitez d'un service  rapide et sécurisé.
+    </p>
 {% endblock %}
 
 {# affichage du formulaire et de l'upload #}
 {% block formulaire %}
 
-
-
+ <p>{{info}}</p>
+ <p>{{erreur}}</p>
+ 
 {% endblock %}

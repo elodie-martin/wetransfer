@@ -15,4 +15,48 @@
 
 
 
-{% endblock %}
+{% endblock %}<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <base href="http://localhost:8080/">
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <title>EZ-Transfer</title>
+    
+</head>
+
+<body class="container-fluid d-flex flex-column justify-content-between">
+    <header class="row d-flex justify-content-start align-items-center">
+        <div class="ml-4">
+            <a href="home"><img class="logo" src="media/ez_logo.svg" alt="logo du site EZ Transfer"></a>
+        </div>
+    </header>
+
+    <section class="central-card container">
+        <div class="row h-100">
+            <div class="info col-5 d-flex flex-column justify-content-center align-items-center">
+                {% block info %}
+                {% endblock %}
+            </div>
+            <div class="formulaire col-7 d-flex flex-column justify-content-center align-items-center">
+                {% block formulaire %}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+
+    <footer class="row d-flex justify-content-end align-items-center">
+        <p class="toogle-footer p-3 mr-4">? | A propos de EZ Transfer</p>
+
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
