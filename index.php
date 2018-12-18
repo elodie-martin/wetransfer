@@ -11,8 +11,9 @@ $request = explode("/", trim($url, '/'));
 
 //Test et récupération du contrôleur et de l'action
 $controler = (count($request) === 0)? 'home': $request[0];
-$action = (count($request) < 2)? '': $request[2];
-$id = (count($request) < 3)? '': $request[3];
+$action = (count($request) < 2)? '': $request[1];
+$idFolder = (count($request) < 3)? '': $request[2];
+$idFile = (count($request) < 4)? '': $request[3];
 
 //Routeur pour acces aux contrôleurs
 switch ($controler) {
@@ -20,20 +21,15 @@ switch ($controler) {
        require_once 'controler/home_controler.php';
     break;
 
-    case 'login':
-       require_once 'controler/login_controler.php';
+    case 'dashboard':
+       require_once 'controler/dashboard_controler.php';
     break;
 
     case 'download':
-       require_once 'controler/download_controler.php';
+       require_once 'controler/home_controler.php';
     break;
-
-    case 'info':
-       require_once 'controler/info_controler.php';
-    break;
-
  
     default: //Affichage de la page 404
-       require_once 'controler/404_controler.php';
+      echo $twig->render('404.twig', array());
     break;
  }
