@@ -27,18 +27,20 @@ function uploadFile(){
     global $bdd;
     global $twig;
 
-    //require_once 'model/hoe_model.php';
-
+    //Récupération des données du formulaire
     $name = $_FILES['icone']['name'];     //Le nom original du fichier, comme sur le disque du visiteur (exemple : mon_icone.png).
     $type = $_FILES['icone']['type'];     //Le type du fichier. Par exemple, cela peut être « image/png ».
     $size = $_FILES['icone']['size'];     //La taille du fichier en octets.
     $tmp_name = $_FILES['icone']['tmp_name']; //L'adresse vers le fichier uploadé dans le répertoire temporaire.
     $error = $_FILES['icone']['error'];    //Le code d'erreur, qui permet de savoir si le fichier a bien été uploadé.
     $maxsize = $_POST["MAX_FILE_SIZE"]; //Taille maximum des fichiers
-    $message = $_POST['message'];
-    $date = getdate();
-    $date_up = $date['mday'].'/'.$date['mon'].'/'.$date['year'];
-    
+    $message = $_POST['message'];       //Message laissé par l'éxpéditeur
+    $date = getdate();                  // Date complète d'envoie du fichier
+    $date_up = $date['mday'].'/'.$date['mon'].'/'.$date['year']; //Conversion au format jj/mm/yyyy
+    $mailExpe = $_POST['emailExpediteur'];     //Mail de l'expéditeur
+    $mailDesti = $_POST['emailDestinataire'];   //Mail du destinataire
+    $expediteur = $_POST['nom'];
+
     //Vérification du transfert
     if ($error > 0){
         $erreur = "Erreur lors du transfert";
@@ -63,9 +65,9 @@ function uploadFile(){
     }
 
     //Créer un identifiant difficile à deviner
-    $nom = time(). md5(uniqid(rand(), true));
+    $number = time(). md5(uniqid(rand(), true));
 
-    $nom = "fichier/".$nom.".".$extension_upload;
+    $nom = "fichier/".$number.".".$extension_upload;
     $resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
     
     //Message de réussite
@@ -75,17 +77,11 @@ function uploadFile(){
         $info = "Ooops, Apparement quelque chose s'est mal passé...";
     }
 
-    echo 'Données du fichier côté contrôler <br>';
-    echo 'nom : '.$name;
-    echo '<br>type : '.$extension_upload;
-    echo '<br>message : '.$message;
-    echo '<br>url : '.$nom;
-    echo '<br>poids : '.$size;
-    echo '<br>date : '.$date_up;
-
     //Mise à jour de la base de donnée avec le nouveau fichier
-    require_once ('model/home_model.php');
-    updateBdd();
+    require_once ('model/upload_model.php');
+    updateDbFile($name, $extension_upload, $message, $id, $size, $date_up);
+    updateDbSender($mailExpe, $expediteur);
+    updateDbReceiver($mailDesti);
 
     //affichage de la page d'information
     echo $twig->render('info.twig', array('info'=>$info, 'erreur'=>$erreur));

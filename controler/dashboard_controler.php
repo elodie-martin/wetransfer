@@ -10,13 +10,23 @@ $twig = new Twig_Environment($loader, array());
 switch ($action) {
 
     case 'display':
-        require 'model/login_model.php';
-        break;
+        displayDashboard();
+    break;
 
     default: // conportement par défaut quand il n'y a pas de cas reconnu par le switch
-        
-        break;
+        echo $twig->render('login.twig', array());
+    break;
  }
 
-// Rendu du block twig avec les données récupérées dans le fichier home_model.php
-echo $twig->render('login.twig', array());
+ function displayDashboard(){
+    
+    global $twig;
+    global $bdd;
+
+    //Récupération des informations saisies
+    $identifiant = $_POST['identifiant'];
+    $password = $_POST['password'];
+
+    //
+
+ }
