@@ -4,15 +4,26 @@
 
 {# block info sur la section upload #}
 {% block info %}
-
-
-
-
+<h2>Bienvenue sur</h2>
+<p><img class="logo" src="media/ez_transfer.svg" alt="logo complet du site EZ transfer"></p>
+<hr>
+<p>
+    Page de connexion administrateurs
+</p>
 {% endblock %}
 
 {# affichage du login et de l'upload #}
 {% block formulaire %}
+<p>
+    <img src="media/user_picture.svg" alt="user picture" width="100px" height="100px">
+</p>
+<form method="post" action="dashboard/display" enctype="multipart/form-data">
 
+    <input type="text" class="form-control" name="identifiant" id="identifiant" placeholder="identifiant" /><br />
+    <input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe"><br />
+   
+    <button type="submit" name="submit" id="btnLogin">Connexion</button>
+</form>
 
 
 {% endblock %}

@@ -20,7 +20,8 @@ CREATE TABLE `destinataires` (
 DROP TABLE IF EXISTS `expediteur`;
 CREATE TABLE `expediteur` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mail` varchar(45) NOT NULL,
+  `mail` varchar(50) NOT NULL,
+  `nom` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -28,11 +29,11 @@ CREATE TABLE `expediteur` (
 DROP TABLE IF EXISTS `fichier`;
 CREATE TABLE `fichier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(45) DEFAULT NULL,
-  `extension` varchar(45) DEFAULT NULL,
-  `message` varchar(45) DEFAULT NULL,
-  `url` varchar(45) DEFAULT NULL,
-  `poids` varchar(45) DEFAULT NULL,
+  `nom` varchar(255) DEFAULT NULL,
+  `extension` varchar(10) DEFAULT NULL,
+  `message` varchar(1000) DEFAULT NULL,
+  `number` varchar(255) DEFAULT NULL,
+  `poids` varchar(100) DEFAULT NULL,
   `date_up` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -46,10 +47,5 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `user` (`id`, `identifiant`, `password`) VALUES
-(1,	'fabien',	'online@2017'),
-(2,	'elodie',	'online@2017'),
-(3,	'gaetan',	'online@2017')
-ON DUPLICATE KEY UPDATE `id` = VALUES(`id`), `identifiant` = VALUES(`identifiant`), `password` = VALUES(`password`);
 
--- 2018-12-10 13:49:02
+-- 2018-12-18 14:31:37
