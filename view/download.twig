@@ -15,13 +15,9 @@
 
 <img src="media/cloud_download.svg"><h2 class="bluetext">Télécharger des fichiers</h2>
 
-<form method="post" action="/home/upload" enctype="multipart/form-data">
-        <input type="email" class="form-control editform" name="emailExpediteur" id="emailExpediteur" placeholder="Votre adresse email"><br />
-        <input type="text" class="form-control editform" name="idenvoi" id="idenvoi" placeholder="Identifiant de l'envoi"><br />
-    </form>
     <p class="bluetext">Récupitulatif</p>
 
 
-    <button class="editdownloadbutton" type="submit" name="submit" id="btnSubmit">Télécharger</button>
+    <a href="/home/downloadfile/{{idFile}}" class="editdownloadbutton" type="submit" name="submit" id="btnSubmit">Télécharger</a>
 
 {% endblock %}
