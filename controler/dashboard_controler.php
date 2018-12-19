@@ -10,18 +10,48 @@ $twig = new Twig_Environment($loader, array());
 switch ($action) {
 
     case 'display':
-        displayDashboard();
+        display();
     break;
 
-    default: // conportement par défaut quand il n'y a pas de cas reconnu par le switch
-        echo $twig->render('login.twig', array());
+    case 'login':
+        login($idFile);
+    break;
+
+    default: //Affichage de la page 404
+        echo $twig->render('404.twig', array());
     break;
  }
 
- function displayDashboard(){
+ function login($idFile){
+
+    global $twig;
+
+    if($idFile != ""){
+        $error = 'Identifiant ou mot de passe incorrect';
+    } else{
+        $error = '';
+    }
+
+    echo $twig->render('login.twig', array('error'=>$error));
+
+ }
+ 
+ function display(){
     
     global $twig;
     global $bdd;
+    
+    $error = "";
+
+    $authentification = logTest();
+    displayDashboard($authentification);
+ }
+
+ function logTest(){
+
+    global $twig;
+    global $bdd;
+    $authentification = false;
 
     //Récupération des informations saisies
     $identifiant = $_POST['identifiant'];
@@ -29,14 +59,33 @@ switch ($action) {
 
     //Récupération des infos de la bdd
     require_once 'model/login_model.php';
-    compareLogs();
+    //getConnexionLogs($identifiant);
+    $logs = getConnexionLogs($identifiant);
 
-    if(){
+    if(isset($logs[0])){
+        if($password === $logs[0]['password']){
+            $authentification = true;
+        } 
+    } 
+   
+    return $authentification;
+}
 
-    }else{
-        
-        echo $twig->render('login.twig', array());
+function displayDashboard($authentification){
+
+    global $twig;
     
+    if($authentification === true){
+
+        require_once 'model/dashboard_model.php';
+        echo $twig->render('dashboard.twig');
+
+    } elseif ($authentification === false){
+
+        $error = 'Identifiant ou mot de passe incorrect';
+        header("Location: http://localhost:8080/dashboard/login/false");
     }
 
- }
+}
+
+ 

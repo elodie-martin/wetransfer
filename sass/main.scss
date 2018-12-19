@@ -19,8 +19,71 @@ $deepGrey : #2E2E2E;
 $lightGrey : #D1D1D1;
 
 //Partiales personalisés pour les pages de notre site
-@import "home";
 @import "404";
+@import "dashboard";
+@import "download";
 
+
+body{
+    height: 100vh;
+    background-image: url(../media/abstract_dust.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: white;
+    header{
+        .logo{
+            width: 100px;
+            height: 100px;
+        }
+    }
+    .central-card {
+        height: 65vh;  
+        border-radius: 20px;
+        .info{
+            background-color: $mainGreen;
+            border-top-left-radius : 20px;
+            border-bottom-left-radius: 20px;
+            color: white;
+            @media (max-width: 767px) { 
+                border-top-right-radius : 20px;
+                border-bottom-right-radius: 20px;
+                margin-bottom: 35px;
+            }
+            .logo{
+                width: 350px;
+                @media (max-width: 576px) { 
+                    width: 230px; 
+                }
+            }
+            
+        }
+        .formulaire{
+            background-color: white;
+            border-top-right-radius : 20px;
+            border-bottom-right-radius: 20px;
+            color: $deepGrey;
+            @media (max-width: 767px) { 
+                border-top-left-radius : 20px;
+                border-bottom-left-radius: 20px;
+            }
+        }
+        @import 'download';
+
+    }
+    
+    footer{
+        height: 100px;
+        .toogle-footer{
+            background-color: $deepGrey;
+            color: $lightGrey;
+            border-radius: 10px;
+        }
+        .footer-cache {
+            position: absolute;
+            bottom: 0;
+        }
+    }
+    
+}
 
 

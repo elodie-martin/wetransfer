@@ -3,7 +3,7 @@
 
 {# block info sur la section upload #}
 {% block info %}
-    <h2>Bienvenue sur</h2>
+    <h1>Bienvenue sur</h1>
     <p><img class="logo" src="media/ez_transfer.svg" alt="logo complet du site EZ transfer"></p>
     <hr>
     <p>
@@ -16,7 +16,7 @@
 {# affichage du formulaire et de l'upload #}
 {% block formulaire %}
 
-    <form method="post" action="/home/upload" enctype="multipart/form-data">
+    <form method="post" action="home/upload" enctype="multipart/form-data">
         <label for="icone">Icône du fichier (JPG, PNG ou GIF | max. 15 Ko) :</label><br />
         <input type="file" class="form-control-file" name="icone" id="icone" /><br />
         <input type="hidden" name="MAX_FILE_SIZE" value="1048576" /><br />
