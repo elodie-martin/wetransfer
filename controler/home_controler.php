@@ -9,8 +9,7 @@ $twig = new Twig_Environment($loader, array());
 switch ($action) {
 
     case 'upload':
-        //uploadFile();
-        envoiMail();
+        uploadFile();
     break;
 
     case 'download':
@@ -25,7 +24,7 @@ switch ($action) {
 //Fonction d'upload du fichier
 function uploadFile(){
 
-    global $bdd;
+    // global $bdd;
     global $twig;
 
     //Récupération des données du formulaire
@@ -79,10 +78,12 @@ function uploadFile(){
     }
 
     //Mise à jour de la base de donnée avec le nouveau fichier
-    require_once ('model/upload_model.php');
-    updateDbFile($name, $extension_upload, $message, $id, $size, $date_up);
-    updateDbSender($mailExpe, $expediteur);
-    updateDbReceiver($mailDesti);
+    // require_once ('model/upload_model.php');
+    // updateDbFile($name, $extension_upload, $message, $id, $size, $date_up);
+    // updateDbSender($mailExpe, $expediteur);
+    // updateDbReceiver($mailDesti);
+
+    envoiMail($number);
 
     //affichage de la page d'information
     echo $twig->render('info.twig', array('info'=>$info, 'erreur'=>$erreur));
@@ -122,9 +123,9 @@ if (file_exists($file)) {
 
 }
 
-function envoiMail(){
+function envoiMail($number){
     global $twig;
-    global $number;
+    echo "dans email".$number;
 
     if ($info = "Transfert réussi !") {
         $emailExpediteur = $_POST['emailExpediteur'];

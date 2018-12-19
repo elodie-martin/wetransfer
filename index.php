@@ -10,10 +10,10 @@ $url = $_SERVER['REQUEST_URI'];
 $request = explode("/", trim($url, '/'));
 
 //Test et récupération du contrôleur et de l'action
-$controler = (count($request) === 0)? 'home': $request[0];
-$action = (count($request) < 2)? '': $request[1];
-$idFolder = (count($request) < 3)? '': $request[2];
-$idFile = (count($request) < 4)? '': $request[3];
+$controler = (count($request) === 1)? 'home': $request[1];
+$action = (count($request) < 3)? '': $request[2];
+$idFolder = (count($request) < 4)? '': $request[3];
+$idFile = (count($request) < 5)? '': $request[4];
 
 //Routeur pour acces aux contrôleurs
 switch ($controler) {
