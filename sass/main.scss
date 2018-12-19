@@ -20,7 +20,6 @@ $lightGrey : #D1D1D1;
 
 //Partiales personalisés pour les pages de notre site
 @import "404";
-@import "dashboard";
 @import "download";
 
 
@@ -68,6 +67,7 @@ body{
             }
         }
         @import 'download';
+        @import 'info';
 
     }
     

@@ -9,21 +9,21 @@
     <link rel="stylesheet" href="css/dashboard.css" />
 
     <title>EZ-Transfer</title>
-h
-
 </head>
 
-<body class="container-fluid d-flex flex-column justify-content-between">
-    <header class="row d-flex ">
-        <a href="home"><img src="media/ez_logo.svg" alt="logo EZ" width="50px" height="50px"></a>
-        <h1>dashboard</h1>
+<body class="container-fluid">
+    <header class="row d-flex align-items-center">
+        <a class="pl-4" href="home"><img src="media/ez_logo.svg" alt="logo EZ" width="50px" height="50px"></a>
+        <h1 class="flex-grow-1 text-center">dashboard</h1>
     </header>
     <main class="row">
-        <div class="col-3 d-flex flex-column">
-
+        <div class="left-bar col-2 d-flex flex-column align-items-center py-5">
+            <p><img src="media/user_picture.svg" alt="photo utilisateur" width="100px" height="100px"></p>
+            <p>{{user}}</p>
+            <a href="dashboard/login"><img src="media/logout.svg" alt="logout logo">logout</a>
         </div>
-        <div class="col-9">
-
+        <div class="col-10 d-flex justify-content-center align-items-center">
+            <p>Diagrammes à compléter</p>
         </div>
     </main>
     <script src="js/dash.js"></script>

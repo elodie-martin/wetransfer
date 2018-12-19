@@ -43,8 +43,10 @@ switch ($action) {
     
     $error = "";
 
-    $authentification = logTest();
-    displayDashboard($authentification);
+    $auth_info = logTest();
+    $authentification = $auth_info[0];
+    $user = $auth_info[1];
+    displayDashboard($authentification, $user);
  }
 
  function logTest(){
@@ -68,18 +70,18 @@ switch ($action) {
             $_SESSION['authentification'] = true;
         } 
     } 
-   
-    return $authentification;
+    $auth_info = [$authentification, $identifiant];
+    return $auth_info;
 }
 
-function displayDashboard($authentification){
+function displayDashboard($authentification, $user){
 
     global $twig;
 
     if($_SESSION['authentification'] === true){
 
         require_once 'model/dashboard_model.php';
-        echo $twig->render('dashboard.twig');
+        echo $twig->render('dashboard.twig', array('user'=>$user));
 
     } else{
 
