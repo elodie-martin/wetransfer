@@ -64,7 +64,8 @@ switch ($action) {
 
     if(isset($logs[0])){
         if($password === $logs[0]['password']){
-            $authentification = true;
+            session_start();
+            $_SESSION['authentification'] = true;
         } 
     } 
    
@@ -74,15 +75,16 @@ switch ($action) {
 function displayDashboard($authentification){
 
     global $twig;
-    
-    if($authentification === true){
+
+    if($_SESSION['authentification'] === true){
 
         require_once 'model/dashboard_model.php';
         echo $twig->render('dashboard.twig');
 
-    } elseif ($authentification === false){
+    } else{
 
         $error = 'Identifiant ou mot de passe incorrect';
+        session_destroy();
         header("Location: http://localhost:8080/dashboard/login/false");
     }
 
