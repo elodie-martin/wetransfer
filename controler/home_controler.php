@@ -13,9 +13,13 @@ switch ($action) {
         envoiMail();
     break;
 
-    case 'download':
-        downloadFile($idFile);
+    case 'listfile':
+        listFile($idFile);
     break;
+
+    case 'downloadfile':
+        downloadFile($idFile);
+        break;
 
     default: // conportement par défaut quand il n'y a pas de cas reconnu par le switch
         echo $twig->render('home.twig', array());
@@ -88,19 +92,21 @@ function uploadFile(){
     echo $twig->render('info.twig', array('info'=>$info, 'erreur'=>$erreur));
 }
 
-function downloadFile($idFile){
+function listFile($idFile){
 
 
     global $bdd, $twig, $idFile;
     
-    echo $twig->render('download.twig');
-
+    echo $twig->render('download.twig', ["idFile"=>$idFile]);
+}
 
     // $_SERVER['REQUEST_URI']
 
+function downloadFile($idFile) {
+
 
 $file = $_SERVER["DOCUMENT_ROOT"]."/fichier/$idFile";
-echo $file;
+$error = false;
 
 if (file_exists($file)) {
     header('Content-Description: File Transfer');
@@ -115,12 +121,16 @@ if (file_exists($file)) {
     flush();
     readfile($file);
     exit;
+    } else {
+        $error=true;
     }
+
 
     
 
 
 }
+
 
 function envoiMail(){
     global $twig;
