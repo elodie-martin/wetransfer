@@ -156,15 +156,19 @@ function envoiMail($number, $emailExpediteur, $emailDestinataire, $message, $siz
     }
 }
 
-function downloadFile($idFile){
+function listFile($idFile){
+
 
     global $bdd, $twig, $idFile;
     
-    echo $twig->render('download.twig');
+    echo $twig->render('download.twig', ["idFile"=>$idFile]);
+}
 
-    // $_SERVER['REQUEST_URI']
+
+function downloadFile($idFile) {
+
     $file = $_SERVER["DOCUMENT_ROOT"]."/fichier/$idFile";
-    echo $file;
+    $error = false;
 
     if (file_exists($file)) {
         header('Content-Description: File Transfer');
@@ -179,5 +183,8 @@ function downloadFile($idFile){
         flush();
         readfile($file);
         exit;
-    }
+        } else {
+        
+            $error=true;
+        }
 }
