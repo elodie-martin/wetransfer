@@ -167,7 +167,6 @@ function envoiMail($number){
         // $msg .= $fichier."\n";
 
         $msg = $twig->render('mail.twig', array('emailExpediteur'=>$emailExpediteur, 'emailDestinataire'=>$emailDestinataire, 'message'=>$message, 'size'=>$size, 'fichier'=>$fichier, 'number'=>$number));
-        echo $msg;
         $headers .= 'From: EzTransfer'."\n";
         
         mail($to, $subject, $msg, $headers);
