@@ -11,10 +11,14 @@ $number = "";
 switch ($action) {
 
     case 'upload':
-        upload();
+    uploadFile();
     break;
 
-    case 'download':
+    case 'listfile':
+        listFile($idFile);
+    break;
+
+    case 'downloadfile':
         downloadFile($idFile);
     break;
 
