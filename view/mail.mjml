@@ -19,7 +19,7 @@
         <mj-text align="center" padding="10px 25px" font-size="20px" color="#512d0b"><strong>{{ emailExpediteur }} vous a envoyé des fichiers avec EzTransfer</strong></mj-text>
         <mj-text align="center" font-size="18px" font-family="Arial" padding-top="40px">1 Fichier, {{ size }}, {{ fichier }}</mj-text>
         <mj-text align="center" color="#489BDA" font-size="25px" font-family="Arial, sans-serif" font-weight="bold" line-height="35px" padding-top="20px">{{ message }}</mj-text>
-        <mj-button background-color="#199a87" href="https://elodiem.promo-23.codeur.online/eztransfer/home/download/{{ number }}" font-family="Arial, sans-serif" padding="20px 0 0 0" font-weight="bold" font-size="16px">Récupérez vos fichiers</mj-button>
+        <mj-button background-color="#199a87" href="https://elodiem.promo-23.codeur.online/eztransfer/home/listfile/{{ number }}" font-family="Arial, sans-serif" padding="20px 0 0 0" font-weight="bold" font-size="16px">Récupérez vos fichiers</mj-button>
         <mj-text align="center" color="#000000" font-size="14px" font-family="Arial, sans-serif" padding-top="40px">EzTransfer
         </mj-text>
       </mj-column>

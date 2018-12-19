@@ -69,10 +69,11 @@ function uploadFile(){
     }
 
     //Créer un identifiant difficile à deviner
-    $number = time(). md5(uniqid(rand(), true));
+    $id = time(). md5(uniqid(rand(), true));
 
-    $nom = "fichier/".$number.".".$extension_upload;
+    $nom = "fichier/".$id.".".$extension_upload;
     $resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
+    $number = $id.".".$extension_upload;
     
     //Message de réussite
     if ($resultat){
@@ -106,7 +107,8 @@ function listFile($idFile){
 function downloadFile($idFile) {
 
 
-$file = $_SERVER["DOCUMENT_ROOT"]."/fichier/$idFile";
+$file = $_SERVER["DOCUMENT_ROOT"]."/eztransfer/fichier/$idFile";
+echo $file;
 $error = false;
 
 if (file_exists($file)) {
@@ -167,7 +169,6 @@ function envoiMail($number){
         // $msg .= $fichier."\n";
 
         $msg = $twig->render('mail.twig', array('emailExpediteur'=>$emailExpediteur, 'emailDestinataire'=>$emailDestinataire, 'message'=>$message, 'size'=>$size, 'fichier'=>$fichier, 'number'=>$number));
-        echo $msg;
         $headers .= 'From: EzTransfer'."\n";
         
         mail($to, $subject, $msg, $headers);
