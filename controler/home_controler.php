@@ -14,7 +14,7 @@ switch ($action) {
     break;
 
     case 'download':
-        downloadFile();
+        downloadFile($idFile);
     break;
 
     default: // conportement par défaut quand il n'y a pas de cas reconnu par le switch
@@ -88,12 +88,37 @@ function uploadFile(){
     echo $twig->render('info.twig', array('info'=>$info, 'erreur'=>$erreur));
 }
 
-function downloadFile(){
+function downloadFile($idFile){
 
-    global $bdd;
 
-    require 'model/download_model.php';
-    echo $twig->render('home.twig', array());
+    global $bdd, $twig, $idFile;
+    
+    echo $twig->render('download.twig');
+
+
+    // $_SERVER['REQUEST_URI']
+
+
+$file = $_SERVER["DOCUMENT_ROOT"]."/fichier/$idFile";
+echo $file;
+
+if (file_exists($file)) {
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($file));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($file));
+    ob_clean();
+    flush();
+    readfile($file);
+    exit;
+    }
+
+    
+
 
 }
 

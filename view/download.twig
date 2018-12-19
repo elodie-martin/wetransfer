@@ -3,15 +3,25 @@
 
 {# block info sur la section upload #}
 {% block info %}
-
-
-
+    <h2>Bienvenue sur</h2>
+    <p><img class="logo" src="media/ez_transfer.svg" alt="logo complet du site EZ transfer"></p>
+    <hr>
+    <p>Récupérez les fichiers que l'on vous a envoyé en entrant l'identifiant que vous avez reçu par mail.</p>
 
 {% endblock %}
 
 {# affichage du formulaire et de l'upload #}
 {% block formulaire %}
 
+<img src="media/cloud_download.svg"><h2 class="bluetext">Télécharger des fichiers</h2>
 
+<form method="post" action="/home/upload" enctype="multipart/form-data">
+        <input type="email" class="form-control editform" name="emailExpediteur" id="emailExpediteur" placeholder="Votre adresse email"><br />
+        <input type="text" class="form-control editform" name="idenvoi" id="idenvoi" placeholder="Identifiant de l'envoi"><br />
+    </form>
+    <p class="bluetext">Récupitulatif</p>
+
+
+    <button class="editdownloadbutton" type="submit" name="submit" id="btnSubmit">Télécharger</button>
 
 {% endblock %}
