@@ -33,7 +33,6 @@ body{
         }
     }
     .central-card {
-        width: 150vh;
         height: 65vh;  
         border-radius: 20px;
         .info{
@@ -41,15 +40,28 @@ body{
             border-top-left-radius : 20px;
             border-bottom-left-radius: 20px;
             color: white;
+            @media (max-width: 767px) { 
+                border-top-right-radius : 20px;
+                border-bottom-right-radius: 20px;
+                margin-bottom: 35px;
+            }
             .logo{
                 width: 350px;
+                @media (max-width: 576px) { 
+                    width: 230px; 
+                }
             }
+            
         }
         .formulaire{
             background-color: white;
             border-top-right-radius : 20px;
             border-bottom-right-radius: 20px;
             color: $deepGrey;
+            @media (max-width: 767px) { 
+                border-top-left-radius : 20px;
+                border-bottom-left-radius: 20px;
+            }
         }
     }
     
@@ -59,6 +71,10 @@ body{
             background-color: $deepGrey;
             color: $lightGrey;
             border-radius: 10px;
+        }
+        .footer-cache {
+            position: absolute;
+            bottom: 0;
         }
     }
     

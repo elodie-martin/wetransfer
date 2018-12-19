@@ -9,7 +9,7 @@ $twig = new Twig_Environment($loader, array());
 switch ($action) {
 
     case 'upload':
-        uploadFile();
+        //uploadFile();
         envoiMail();
     break;
 
@@ -99,6 +99,7 @@ function downloadFile(){
 
 function envoiMail(){
     global $twig;
+    global $number;
 
     if ($info = "Transfert réussi !") {
         $emailExpediteur = $_POST['emailExpediteur'];

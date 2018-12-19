@@ -22,11 +22,11 @@
 
     <section class="central-card container">
         <div class="row h-100">
-            <div class="info col-5 d-flex flex-column justify-content-center align-items-center">
+            <div class="info col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center">
                 {% block info %}
                 {% endblock %}
             </div>
-            <div class="formulaire col-7 d-flex flex-column justify-content-center align-items-center">
+            <div class="formulaire col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center">
                 {% block formulaire %}
                 {% endblock %}
             </div>
@@ -35,8 +35,29 @@
 
     <footer class="row d-flex justify-content-end align-items-center">
         <p class="toogle-footer p-3 mr-4">? | A propos de EZ Transfer</p>
-
     </footer>
+
+    {# <div class="footer-cache container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start">
+                <div>
+                <h2>About EZ Transfer</h2>
+                <p>EZ Transfer est un site issu d'un projet pédagogique créée par Fabien Cazalet, Elodie Martin et Gaëtan Emond dans le cadre de leur formation de développeurs web à l'Access Code School de Vesoul.</p></div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                <h2 class="d-flex justify-content-center">Navigation</h2>
+                Upload
+                Download
+                Connexion
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-end justify-content-xl-end">
+                <h2>Partenaires</h2>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center">
+            <p>Copyright © 2018 EZ Transfer. All rights reserved</p>
+        </div>
+    </div> #}
 
     <script src="js/app.js"></script>
 </body>
