@@ -11,7 +11,7 @@ $number = "";
 switch ($action) {
 
     case 'upload':
-    uploadFile();
+        upload();
     break;
 
     case 'listfile':
@@ -22,12 +22,8 @@ switch ($action) {
         downloadFile($idFile);
     break;
 
-    case 'home': // conportement par défaut quand il n'y a pas de cas reconnu par le switch
-        echo $twig->render('home.twig', array());
-    break;
-
     default: //Affichage de la page 404
-        echo $twig->render('404.twig', array());
+        echo $twig->render('home.twig', array());
     break;
  }
 
@@ -59,13 +55,14 @@ function upload(){
     $number = $upvars[2];
     $info = $upvars[3];
     $erreur = $upvars[4];
+    $titre = $upvars[5];
 
     //echo 'variables bdd : '.$name." : ".$extension_upload." : ".$message." : ".$id." : ".$size." : ".$date_up." : ".$mailExpe." : ".$expediteur." : ".$mailDesti;
     updateDb($name, $extension_upload, $message, $id, $size,  $date_up, $mailExpe, $expediteur, $mailDesti);     //Mise à jour de la base de données
     envoiMail($info, $number, $mailExpe, $mailDesti, $message, $size, $name);    //Envoie du mail
 
     //affichage de la page d'information
-    echo $twig->render('info.twig', array('info'=>$info, 'erreur'=>$erreur));
+    echo $twig->render('info.twig', array('titre'=>$titre, 'info'=>$info, 'nom_fichier'=>$name, "poids"=>$size, 'expediteur'=>$expediteur, 'message'=>$message, 'erreur'=>$erreur));
 
   
 }
@@ -89,7 +86,7 @@ function uploadFile($name, $type, $size, $tmp_name, $error, $maxsize){
     
     //Vérification de l'extension
     if ( in_array($extension_upload,$extensions_valides) ){
-        $erreur = "Extension valide";
+        $erreur = "";
     } else {
         $erreur = "Extension non-valide";
     }
@@ -103,11 +100,13 @@ function uploadFile($name, $type, $size, $tmp_name, $error, $maxsize){
     
     //Message de réussite
     if ($resultat){
-        $info = "Transfert réussi !";
+        $info = "Vos fichiers ont bien été envoyés !";
+        $titre = "C'est tout bon";
     } else {
-        $info = "Ooops, Apparement quelque chose s'est mal passé...";
+        $info = "Apparement quelque chose s'est mal passé...";
+        $titre = "Mince, ça ne marche pas";
     }
-    $passVar = [$extension_upload, $id, $number, $info, $erreur];
+    $passVar = [$extension_upload, $id, $number, $info, $erreur, $titre];
     
     return $passVar;
 }
