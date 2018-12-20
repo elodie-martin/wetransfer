@@ -1,17 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/main.css" />
+    <base href="http://localhost:8080/">
+    <link rel="stylesheet" href="css/dashboard.css" />
 
     <title>EZ-Transfer</title>
 </head>
 
-<body>
-    
+<body class="container-fluid">
+    <header class="row d-flex align-items-center">
+        <a class="pl-4" href="home"><img src="media/ez_logo.svg" alt="logo EZ" width="50px" height="50px"></a>
+        <h1 class="flex-grow-1 text-center">dashboard</h1>
+    </header>
+    <main class="row">
+        <div class="left-bar col-2 d-flex flex-column align-items-center py-5">
+            <p><img src="media/user_picture.svg" alt="photo utilisateur" width="100px" height="100px"></p>
+            <p>{{user}}</p>
+            <a href="dashboard/login"><img src="media/logout.svg" alt="logout logo">logout</a>
+        </div>
+        <div class="col-10 d-flex justify-content-center align-items-center">
+            <p>Diagrammes à compléter</p>
+        </div>
+    </main>
+    <script src="js/dash.js"></script>
 </body>
 
 </html>

@@ -7,57 +7,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <base href="http://localhost:8080/">
     <link rel="stylesheet" href="css/main.css" />
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <title>EZ-Transfer</title>
 
     
 </head>
 
-<body class="container-fluid d-flex flex-column justify-content-between">
-    <header class="row d-flex justify-content-start align-items-center">
+<body class="d-flex flex-column justify-content-between">
+    <header class="container-fluid row d-flex justify-content-start align-items-center">
         <div class="ml-4">
             <a href="home"><img class="logo" src="media/ez_logo.svg" alt="logo du site EZ Transfer"></a>
         </div>
     </header>
 
-    <section class="central-card container">
-        <div class="row h-100">
-            <div class="info col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center">
-                {% block info %}
-                {% endblock %}
-            </div>
-            <div class="formulaire col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center">
-                {% block formulaire %}
-                {% endblock %}
+    <section class="container-fluid">
+        <div class="container central-card">
+            <div class="row h-100">
+                <div class="info col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center pl-5 pr-5">
+                    {% block info %}
+                    {% endblock %}
+                </div>
+                <div class="formulaire col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center pl-5 pr-5">
+                    {% block formulaire %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="row d-flex justify-content-end align-items-center">
+    <footer class="container-fluid row d-flex justify-content-end align-items-center">
         <p class="toogle-footer p-3 mr-4">? | A propos de EZ Transfer</p>
     </footer>
 
-    {# <div class="footer-cache container">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start">
-                <div>
-                <h2>About EZ Transfer</h2>
-                <p>EZ Transfer est un site issu d'un projet pédagogique créée par Fabien Cazalet, Elodie Martin et Gaëtan Emond dans le cadre de leur formation de développeurs web à l'Access Code School de Vesoul.</p></div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                <h2 class="d-flex justify-content-center">Navigation</h2>
-                Upload
-                Download
-                Connexion
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-end justify-content-xl-end">
-                <h2>Partenaires</h2>
+    <div class="footer-cache container-fluid pt-4 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start text-center text-sm-center text-md-center text-lg-left text-xl-left">
+                    <div>
+                        <h2>About EZ Transfer</h2>
+                        <p>EZ Transfer est un site issu d'un projet pédagogique créé par Fabien Cazalet, Elodie Martin et Gaëtan Emond dans le cadre de leur formation de développeur web à l'Access Code School de Vesoul.</p>
+                        <p class="pt-2">Copyright © 2018 EZ Transfer. All rights reserved</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 d-flex flex-column pt-3 pt-sm-3 pt-md-3 pt-lg-0 pt-xl-0">
+                    <h2 class="text-center d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-end justify-content-xl-end">Partenaires</h2>
+                    <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-end justify-content-xl-end">
+                        <img src="media/logo-acs.jpeg" alt="logo-acs" />
+                    </div>
+                </div>
+                <div class="button-close"><i class="far fa-times-circle"></i></div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center">
-            <p>Copyright © 2018 EZ Transfer. All rights reserved</p>
-        </div>
-    </div> #}
+    </div>
 
     <script src="js/app.js"></script>
 </body>

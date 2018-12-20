@@ -15,8 +15,22 @@
 
 {# affichage du formulaire et de l'upload #}
 {% block formulaire %}
-
- <p>{{info}}</p>
- <p>{{erreur}}</p>
+<div class="d-flex justify-content-between">
+    <p class="bg-logo"><img src="media/cloud_dl.svg" alt="logo transfert ok" height="50px" width="50px"></p>
+    <h2>{{titre}}</h2>
+</div>
+<div>
+    <p>{{info}}</p>
+</div>
+<div>
+    <h3>Récapitulatif</h3>
+    <p>nom du fichier : {{nom_fichier}}</p>
+    <p>taille : {{poids}} Octets</p>
+    <p>expéditeur : {{expediteur}}</p>
+    <p>message : {{message}}</p>
+    <p>{{erreur}}</p>
+</div>
+ 
+ 
  
 {% endblock %}
