@@ -16,14 +16,16 @@
 {# affichage du formulaire et de l'upload #}
 {% block formulaire %}
 
-    <form method="post" action="home/upload" enctype="multipart/form-data">
-        <label for="icone">Icône du fichier (JPG, PNG ou GIF | max. 15 Ko) :</label><br />
-        <input type="file" class="form-control-file" name="icone" id="icone" /><br />
-        <input type="hidden" name="MAX_FILE_SIZE" value="1048576" /><br />
-        <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom et prénom" /><br />
-        <input type="email" class="form-control" name="emailExpediteur" id="emailExpediteur" placeholder="Votre adresse email"><br />
-        <input type="email" class="form-control" name="emailDestinataire" id="emailDestinataire" placeholder="Email du destinaire"><br />
-        <textarea class="form-control" name="message" placeholder="Message" id="message"></textarea><br />
-        <button type="submit" name="submit" id="btnSubmit">Transférer</button>
+    <form method="post" action="home/upload" enctype="multipart/form-data" class="w-100">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Ajouter des fichiers</label>
+            <input type="hidden" name="MAX_FILE_SIZE" value="2000000000" />
+        </div>
+        <input type="text" class="form-control input-upload mt-4" name="nom" id="nom" placeholder="Nom et prénom" />
+        <input type="email" class="form-control input-upload mt-4" name="emailExpediteur" id="emailExpediteur" placeholder="Votre adresse email">
+        <input type="email" class="form-control input-upload mt-4" name="emailDestinataire" id="emailDestinataire" placeholder="Email du destinaire">
+        <textarea class="form-control input-upload mt-4" name="message" placeholder="Message" id="message"></textarea>
+        <button type="submit" name="submit" id="btnSubmit" class="text-center mt-4">Transférer</button>
     </form>
 {% endblock %}
