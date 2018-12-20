@@ -19,8 +19,11 @@
 $mainGreen : #009688;
 $deepGrey : #2E2E2E;
 $lightGrey : #D1D1D1;
+ 
+//Partiales personalisés pour les pages de notre site
+@import "404";
 
-body {
+body{
     font-family: 'Lato', sans-serif;
     height: 100vh;
     background-image: url(../media/abstract_dust.jpg);
@@ -84,6 +87,9 @@ body {
                 height: 80vh;
             }
         }
+        @import 'download';
+        @import 'info';
+
     }
     
     footer {
@@ -142,21 +148,3 @@ body {
 }
 
 
-.bluetext {
-    color: #009688;
-    
-}
-
-
-
-.editform {
-    border: none;
-    background-color: #E0E0E0;
-}
-
-.editdownloadbutton {
-    border: none;
-    color: azure;
-    background-color: #009688;
-
-}
