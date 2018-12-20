@@ -7,6 +7,7 @@ $twig = new Twig_Environment($loader, array());
 
 //variables globales
 $number = "";
+
 // switch qui définit l'action à effectuer
 switch ($action) {
 
@@ -29,10 +30,9 @@ switch ($action) {
 
 //Fonction d'upload du fichier
 function upload(){
-
-    // global $bdd;
+    
     global $twig;
-
+    
     //Récupération des données du formulaire
     $name = $_FILES['icone']['name'];     //Le nom original du fichier, comme sur le disque du visiteur (exemple : mon_icone.png).
     $type = $_FILES['icone']['type'];     //Le type du fichier. Par exemple, cela peut être « image/png ».
@@ -49,7 +49,7 @@ function upload(){
 
     $upvars = uploadFile($name, $type, $size, $tmp_name, $error, $maxsize);   //Upload du fichier sur le serveur
     
-    //Variabes à récupérer de la fonction uploadFile et à passer aux fonctions suivantes
+    // //Variabes à récupérer de la fonction uploadFile et à passer aux fonctions suivantes
     $extension_upload = $upvars[0]; 
     $id = $upvars[1];
     $number = $upvars[2];
@@ -57,11 +57,11 @@ function upload(){
     $erreur = $upvars[4];
     $titre = $upvars[5];
 
-    //echo 'variables bdd : '.$name." : ".$extension_upload." : ".$message." : ".$id." : ".$size." : ".$date_up." : ".$mailExpe." : ".$expediteur." : ".$mailDesti;
+    // //echo 'variables bdd : '.$name." : ".$extension_upload." : ".$message." : ".$id." : ".$size." : ".$date_up." : ".$mailExpe." : ".$expediteur." : ".$mailDesti;
     updateDb($name, $extension_upload, $message, $id, $size,  $date_up, $mailExpe, $expediteur, $mailDesti);     //Mise à jour de la base de données
     envoiMail($info, $number, $mailExpe, $mailDesti, $message, $size, $name);    //Envoie du mail
 
-    //affichage de la page d'information
+    // //affichage de la page d'information
     echo $twig->render('info.twig', array('titre'=>$titre, 'info'=>$info, 'nom_fichier'=>$name, "poids"=>$size, 'expediteur'=>$expediteur, 'message'=>$message, 'erreur'=>$erreur));
 
   
@@ -113,13 +113,14 @@ function uploadFile($name, $type, $size, $tmp_name, $error, $maxsize){
 
 function updateDb($name, $extension_upload, $message, $id, $size, $date_up, $mailExpe, $expediteur, $mailDesti){
 
-    global $bdd; 
+    global $bdd;
+    
 
     //Mise à jour de la base de donnée avec le nouveau fichier
-    require_once 'model/upload_model.php';
+    require_once ('model/upload_model.php');
     updateDbFile($name, $extension_upload, $message, $id, $size, $date_up);
     updateDbSender($mailExpe, $expediteur);
-    updateDbReceiver($mailDesti);
+    updateDbReceiver($mailDesti); 
 
 }
 
@@ -156,10 +157,14 @@ function envoiMail($number, $emailExpediteur, $emailDestinataire, $message, $siz
 
 function listFile($idFile){
 
-
     global $bdd, $twig, $idFile;
-    
-    echo $twig->render('download.twig', ["idFile"=>$idFile]);
+
+    $number = explode(".", trim($idFile, '.'));
+
+    require_once 'model/download_model.php';
+    $resultat = getInfoDownload($number[0]);
+
+    echo $twig->render('download.twig', ["idFile"=>$idFile, 'resultat'=>$resultat]);
 }
 
 
