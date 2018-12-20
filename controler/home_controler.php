@@ -100,7 +100,7 @@ function uploadFile($name, $type, $size, $tmp_name, $error, $maxsize){
     
     
     //Message de réussite
-    if ($erreur = ""){
+    if ($erreur === ""){
         $resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
         $info = "Vos fichiers ont bien été envoyés !";
         $titre = "C'est tout bon";
