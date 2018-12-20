@@ -2,7 +2,7 @@
 let url = window.location.pathname;
 
 //Test de la page en cours
-if (url === '/eztransfer/home') {
+if (url === '/home') {
     //vérification de la page upload
 
     const icone = document.querySelector("#icone");
@@ -25,7 +25,7 @@ if (url === '/eztransfer/home') {
             window.alert("Veuillez entrer une adresse email valide !");
         }
     });
-} else if (url === '/eztransfer/dashboard') {
+} else if (url === '/dashboard') {
     //vérification de la page login
     const identifiant = document.querySelector("#identifiant");
     const password = document.querySelector("#password")
