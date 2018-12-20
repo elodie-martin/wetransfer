@@ -5,11 +5,14 @@ require_once 'vendor/autoload.php';
 $loader = new Twig_Loader_Filesystem('view');
 $twig = new Twig_Environment($loader, array());
 
+//variables globales
+$number = "";
+
 // switch qui définit l'action à effectuer
 switch ($action) {
 
     case 'upload':
-        uploadFile();
+        upload();
     break;
 
     case 'listfile':
@@ -18,19 +21,18 @@ switch ($action) {
 
     case 'downloadfile':
         downloadFile($idFile);
-        break;
+    break;
 
-    default: // conportement par défaut quand il n'y a pas de cas reconnu par le switch
+    default: //Affichage de la page 404
         echo $twig->render('home.twig', array());
     break;
  }
 
 //Fonction d'upload du fichier
-function uploadFile(){
-
-    // global $bdd;
+function upload(){
+    
     global $twig;
-
+    
     //Récupération des données du formulaire
     $name = $_FILES['icone']['name'];     //Le nom original du fichier, comme sur le disque du visiteur (exemple : mon_icone.png).
     $type = $_FILES['icone']['type'];     //Le type du fichier. Par exemple, cela peut être « image/png ».
@@ -45,6 +47,27 @@ function uploadFile(){
     $mailDesti = $_POST['emailDestinataire'];   //Mail du destinataire
     $expediteur = $_POST['nom'];
 
+    $upvars = uploadFile($name, $type, $size, $tmp_name, $error, $maxsize);   //Upload du fichier sur le serveur
+    
+    // //Variabes à récupérer de la fonction uploadFile et à passer aux fonctions suivantes
+    $extension_upload = $upvars[0]; 
+    $id = $upvars[1];
+    $number = $upvars[2];
+    $info = $upvars[3];
+    $erreur = $upvars[4];
+    $titre = $upvars[5];
+
+    // //echo 'variables bdd : '.$name." : ".$extension_upload." : ".$message." : ".$id." : ".$size." : ".$date_up." : ".$mailExpe." : ".$expediteur." : ".$mailDesti;
+    updateDb($name, $extension_upload, $message, $id, $size,  $date_up, $mailExpe, $expediteur, $mailDesti);     //Mise à jour de la base de données
+    envoiMail($info, $number, $mailExpe, $mailDesti, $message, $size, $name);    //Envoie du mail
+
+    // //affichage de la page d'information
+    echo $twig->render('info.twig', array('titre'=>$titre, 'info'=>$info, 'nom_fichier'=>$name, "poids"=>$size, 'expediteur'=>$expediteur, 'message'=>$message, 'erreur'=>$erreur));
+
+  
+}
+
+function uploadFile($name, $type, $size, $tmp_name, $error, $maxsize){
     //Vérification du transfert
     if ($error > 0){
         $erreur = "Erreur lors du transfert";
@@ -63,7 +86,7 @@ function uploadFile(){
     
     //Vérification de l'extension
     if ( in_array($extension_upload,$extensions_valides) ){
-        $erreur = "Extension valide";
+        $erreur = "";
     } else {
         $erreur = "Extension non-valide";
     }
@@ -72,78 +95,40 @@ function uploadFile(){
     $id = time(). md5(uniqid(rand(), true));
 
     $nom = "fichier/".$id.".".$extension_upload;
-    $resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
     $number = $id.".".$extension_upload;
     
     //Message de réussite
-    if ($resultat){
-        $info = "Transfert réussi !";
+    if ($erreur === ""){
+        $resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
+        $info = "Vos fichiers ont bien été envoyés !";
+        $titre = "C'est tout bon";
     } else {
-        $info = "Ooops, Apparement quelque chose s'est mal passé...";
+        $info = "Apparement quelque chose s'est mal passé...";
+        $titre = "Mince, ça ne marche pas";
     }
+    $passVar = [$extension_upload, $id, $number, $info, $erreur, $titre];
+    
+    return $passVar;
+}
+
+function updateDb($name, $extension_upload, $message, $id, $size, $date_up, $mailExpe, $expediteur, $mailDesti){
+
+    global $bdd;
+    
 
     //Mise à jour de la base de donnée avec le nouveau fichier
-    // require_once ('model/upload_model.php');
-    // updateDbFile($name, $extension_upload, $message, $id, $size, $date_up);
-    // updateDbSender($mailExpe, $expediteur);
-    // updateDbReceiver($mailDesti);
-
-    envoiMail($number);
-
-    //affichage de la page d'information
-    echo $twig->render('info.twig', array('info'=>$info, 'erreur'=>$erreur));
-}
-
-function listFile($idFile){
-
-
-    global $bdd, $twig, $idFile;
-    
-    echo $twig->render('download.twig', ["idFile"=>$idFile]);
-}
-
-    // $_SERVER['REQUEST_URI']
-
-function downloadFile($idFile) {
-
-
-$file = $_SERVER["DOCUMENT_ROOT"]."/eztransfer/fichier/$idFile";
-echo $file;
-$error = false;
-
-if (file_exists($file)) {
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename='.basename($file));
-    header('Content-Transfer-Encoding: binary');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($file));
-    ob_clean();
-    flush();
-    readfile($file);
-    exit;
-    } else {
-        $error=true;
-    }
-
-
-    
-
+    require_once ('model/upload_model.php');
+    updateDbFile($name, $extension_upload, $message, $id, $size, $date_up);
+    updateDbSender($mailExpe, $expediteur);
+    updateDbReceiver($mailDesti); 
 
 }
 
-function envoiMail($number){
+function envoiMail($number, $emailExpediteur, $emailDestinataire, $message, $size, $fichier){
+
     global $twig;
 
     if ($info = "Transfert réussi !") {
-        $emailExpediteur = $_POST['emailExpediteur'];
-        $emailDestinataire = $_POST['emailDestinataire'];
-        $message = $_POST['message'];
-        $size = $_FILES['icone']['size'];
-        $fichier =$_FILES['icone']['name'];
-        $submit = $_POST['submit'];
         
         $to = $emailDestinataire;
         
@@ -162,16 +147,47 @@ function envoiMail($number){
             if($size>=0) return intval($size)." ".('octets');
         }
         
-        // $msg = $emailExpediteur.' vous a envoyé des fichiers avec EzTransfer'."\n";
-        // $msg .= '1 Fichier, '.$size.''."\n";
-        // $msg .= $message."\n";
-        // $msg .= 'Fichier :'."\n";
-        // $msg .= $fichier."\n";
-
         $msg = $twig->render('mail.twig', array('emailExpediteur'=>$emailExpediteur, 'emailDestinataire'=>$emailDestinataire, 'message'=>$message, 'size'=>$size, 'fichier'=>$fichier, 'number'=>$number));
         $headers .= 'From: EzTransfer'."\n";
         
         mail($to, $subject, $msg, $headers);
 
     }
-};
+}
+
+function listFile($idFile){
+
+    global $bdd, $twig, $idFile;
+
+    $number = explode(".", trim($idFile, '.'));
+
+    require_once 'model/download_model.php';
+    $resultat = getInfoDownload($number[0]);
+
+    echo $twig->render('download.twig', ["idFile"=>$idFile, 'resultat'=>$resultat]);
+}
+
+
+function downloadFile($idFile) {
+
+    $file = $_SERVER["DOCUMENT_ROOT"]."/fichier/$idFile";
+    $error = false;
+
+    if (file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename='.basename($file));
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        ob_clean();
+        flush();
+        readfile($file);
+        exit;
+        } else {
+        
+            $error=true;
+        }
+}

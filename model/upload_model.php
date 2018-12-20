@@ -9,7 +9,7 @@ function updateDbFile($nom, $extension, $message, $number, $poids, $date){
   // Requète SQL à envoyer
   $sql = "INSERT INTO fichier(nom, extension, message, number, poids, date_up) VALUES(:nom, :extension, :message, :number, :poids, :date);";
   
-  $response = $bdd->prepare( $sql ); // Préparation de la requète
+  $response = $bdd->prepare($sql); // Préparation de la requète
    
   //Passage des paramètres dans la requète
   $response->bindParam(':nom', $nom, PDO::PARAM_STR);

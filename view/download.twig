@@ -6,16 +6,31 @@
     <h2>Bienvenue sur</h2>
     <p><img class="logo" src="media/ez_transfer.svg" alt="logo complet du site EZ transfer"></p>
     <hr>
-    <p>Récupérez les fichiers que l'on vous a envoyé en entrant l'identifiant que vous avez reçu par mail.</p>
+    <p>Récupérez facilement les fichiers que l'on vous a envoyé.</p>
 
 {% endblock %}
 
 {# affichage du formulaire et de l'upload #}
 {% block formulaire %}
 
-<img src="media/cloud_download.svg"><h2 class="bluetext">Télécharger des fichiers</h2>
+<div class="d-flex justify-content-between">
+    <p class="bg-logo"><img src="media/cloud_dl.svg" alt="logo transfert ok" height="50px" width="50px"></p>
+    <h2>Télécharger des fichiers</h2>
+</div>
+<div>
+    <p>{{info}}</p>
+</div>
+<div>
+    <h3>Récapitulatif</h3>
+    {% for file in resultat %}
+    <p>nom du fichier : {{file.nom}}</p>
+    <p>taille : {{file.poids}} Octets</p>
+    <p>message : {{file.message}}</p>
+    {% endfor %}
+</div>
+ 
 
-    <p class="bluetext">Récupitulatif</p>
+    
 
 
     <a href="/eztransfer/home/downloadfile/{{idFile}}" class="editdownloadbutton" type="submit" name="submit" id="btnSubmit">Télécharger</a>

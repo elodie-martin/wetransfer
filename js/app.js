@@ -4,6 +4,7 @@ let url = window.location.pathname;
 //Test de la page en cours
 if (url === '/home') {
     //vérification de la page upload
+
     const icone = document.querySelector("#icone");
     const nom = document.querySelector("#nom");
     const emailExpediteur = document.querySelector("#emailExpediteur");
@@ -37,3 +38,15 @@ if (url === '/home') {
         }
     });
 }
+
+const footer = document.querySelector("footer");
+const footerCache = document.querySelector(".footer-cache");
+const btnClose = document.querySelector(".button-close");
+
+footer.addEventListener("click", function(e) {
+    footerCache.style.display = "block";
+});
+
+btnClose.addEventListener("click", function(e) {
+    footerCache.style.display = "none";
+});
