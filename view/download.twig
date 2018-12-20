@@ -13,9 +13,14 @@
 {# affichage du formulaire et de l'upload #}
 {% block formulaire %}
 
-<img src="media/cloud_download.svg"><h2 class="bluetext">Télécharger des fichiers</h2>
+<div class=" container-fluid d-flex justify-content-center"><div class="mr-4"><img class="edit_pic" src="media/cloud_dl.svg"></div><div><h2 class="bluetext pic_cloud">Télécharger des fichiers</h2></div></div>
 
-    <p class="bluetext">Récupitulatif</p>
+    <p class="bluetext">Récapitulatif</p>
+
+    <p>{{info}}</p>
+    <p>{{erreur}}</p>
+
+    
 
 
     <a href="/home/downloadfile/{{idFile}}" class="editdownloadbutton" type="submit" name="submit" id="btnSubmit">Télécharger</a>

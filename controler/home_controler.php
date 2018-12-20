@@ -105,6 +105,16 @@ function listFile($idFile){
 function downloadFile($idFile) {
 
 
+//Récupération des données du formulaire
+$name = $_FILES['icone']['name'];     //Le nom original du fichier, comme sur le disque du visiteur (exemple : mon_icone.png).
+$type = $_FILES['icone']['type'];     //Le type du fichier. Par exemple, cela peut être « image/png ».
+$size = $_FILES['icone']['size'];     //La taille du fichier en octets.
+$tmp_name = $_FILES['icone']['tmp_name']; //L'adresse vers le fichier uploadé dans le répertoire temporaire.
+$error = $_FILES['icone']['error'];    //Le code d'erreur, qui permet de savoir si le fichier a bien été uploadé.
+$maxsize = $_POST["MAX_FILE_SIZE"]; //Taille maximum des fichiers
+$message = $_POST['message'];       //Message laissé par l'éxpéditeur
+
+
 $file = $_SERVER["DOCUMENT_ROOT"]."/fichier/$idFile";
 $error = false;
 
@@ -125,7 +135,15 @@ if (file_exists($file)) {
         $error=true;
     }
 
+    //Mise à jour de la base de donnée avec le nouveau fichier
+    require_once ('model/download_model.php');
+    getInfoDownload($number[0]);
+    $number = explode(".", trim($idFile, '.'));
+    updateDbFile($name, $extension_upload, $message, $id, $size, $date_up);
+    
 
+    //affichage de la page d'information
+    echo $twig->render('download.twig', array('info'=>$info, 'erreur'=>$erreur));
     
 
 
