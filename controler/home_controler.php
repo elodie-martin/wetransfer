@@ -97,7 +97,6 @@ function uploadFile($name, $type, $size, $tmp_name, $error, $maxsize){
     $nom = "fichier/".$id.".".$extension_upload;
     $number = $id.".".$extension_upload;
     
-    
     //Message de réussite
     if ($erreur === ""){
         $resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
