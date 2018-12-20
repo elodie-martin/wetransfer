@@ -32,6 +32,9 @@ textarea {
     @media (max-width: 576px) { 
         height: 80px;
     }
+    .custom-file-input {
+        height: 120px;
+    }
     .custom-file-label {
         background: rgba(0, 150, 135, 0.1);
         color: #607D8B;

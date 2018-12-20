@@ -124,7 +124,7 @@ function updateDb($name, $extension_upload, $message, $id, $size, $date_up, $mai
 
 }
 
-function envoiMail($number, $emailExpediteur, $emailDestinataire, $message, $size, $fichier){
+function envoiMail($info, $number, $emailExpediteur, $emailDestinataire, $message, $size, $fichier){
 
     global $twig;
 
