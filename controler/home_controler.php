@@ -164,8 +164,7 @@ function listFile($idFile){
     require_once 'model/download_model.php';
     $resultat = getInfoDownload($number[0]);
 
-    var_dump($resultat);
-    echo $twig->render('download.twig', ["idFile"=>$idFile]);
+    echo $twig->render('download.twig', ["idFile"=>$idFile, 'resultat'=>$resultat]);
 }
 
 

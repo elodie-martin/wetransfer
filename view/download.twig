@@ -22,11 +22,11 @@
 </div>
 <div>
     <h3>Récapitulatif</h3>
-    <p>nom du fichier : {{nom_fichier}}</p>
-    <p>taille : {{poids}} Octets</p>
-    <p>expéditeur : {{expediteur}}</p>
-    <p>message : {{message}}</p>
-    <p>{{erreur}}</p>
+    {% for file in resultat %}
+    <p>nom du fichier : {{file.nom}}</p>
+    <p>taille : {{file.poids}} Octets</p>
+    <p>message : {{file.message}}</p>
+    {% endfor %}
 </div>
  
 
