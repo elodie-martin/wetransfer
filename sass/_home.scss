@@ -13,6 +13,18 @@
 
 .custom-file-label {
     &::after {
-        content: "Choisir";
+        display: none;
     }
+}
+
+#btnSubmit {
+    background-color: #009688;
+    color: #FFFFFF;
+    border: 0;
+}
+
+.custom-file-label {
+    background: rgba(0, 150, 135, 0.1);
+    color: #607D8B;
+    border: 0;
 }
